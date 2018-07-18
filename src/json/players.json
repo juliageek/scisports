@@ -1,0 +1,47 @@
+[
+	{
+	"name": "Neymar",
+	"position": "center midfielder",
+	"checked": false
+	},
+	{
+	"name": "Lionel Messi",
+	"position": "left-back",
+	"checked": false
+	},
+	{
+	"name": "Roberto Firmino",
+	"position": "center midfielder",
+	"checked": false
+	},
+	{
+	"name": "Roberto Contesque",
+	"position": "goalkeeper",
+	"checked": false
+	},
+	{
+	"name": "Ivan Raktic",
+	"position": "right-back",
+	"checked": false
+	},
+	{
+	"name": "Raheem Sterling",
+	"position": "center forward",
+	"checked": false
+	},
+	{
+	"name": "Kevin De Bruyne",
+	"position": "left midfielder",
+	"checked": false
+	},
+	{
+	"name": "Kevin De Wit",
+	"position": "right-back",
+	"checked": false
+	},
+	{
+	"name": "Cristiano Ronaldo",
+	"position": "right-back",
+	"checked": false
+	}
+]
