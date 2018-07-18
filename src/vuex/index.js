@@ -9,7 +9,6 @@ export default new Vuex.Store({
 		players: [],
 		data: data,
 		searchWord: '',
-		selectedPlayers: [],
 		canNavigate: false
 	},
 	mutations: {
@@ -26,18 +25,19 @@ export default new Vuex.Store({
 				});
 			}
 		},
-		selectPlayer (state, value) {
-			const index = state.players.findIndex(player => {
-				return player.name === value.name;
-			});
-			/*if (value.checked === false) {
-				state.players[index].checked = true;
-			} else {
-				state.players[index].checked = false;
-			}*/
-			state.canNavigate = state.players.some(player => {
-				return player.checked === true;
-			})
+		selectPlayer (state, payload) {
+			if(state.players) {
+				state.players.map(player => {
+					if (player.name === payload) {
+						const data = {
+							name: payload,
+							position: player.position,
+							checked: !player.checked
+						};
+						Object.assign({}, player, data)
+					}
+				})
+			}
 		}
 	},
 	actions: {

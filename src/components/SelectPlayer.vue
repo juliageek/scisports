@@ -2,8 +2,8 @@
   <div>
     <form class="player-search-form">
       <input type="text" placeholder="Search for a player" v-model="searchWord">
-      <form v-for="player in players" v-if="players" class="players-checkbox-list">
-        <input class="player-checkbox" type="checkbox" v-bind:key="player.name" :value="player" v-model="selectPlayer" @change="onChange">{{player.name}}<br>
+      <form v-for="player in players" v-if="players.length > 0" class="players-checkbox-list">
+        <input class="player-checkbox" type="checkbox" v-bind:key="player.name" :value="player.name" v-model="selectPlayer" @change="onChange">{{player.name}}<br>
       </form>
       <button class="next-button" type="submit" :disabled="!canGoToNextStep" @click="goToSelectPosition">Next</button>
     </form>
@@ -30,7 +30,7 @@ export default {
       },
       selectPlayer: {
 	      get() {
-		      return store.state.selectedPlayers;
+		      return store.state.players;
 	      },
 	      set(value) {
 		      store.dispatch('selectPlayer', value)
@@ -41,7 +41,7 @@ export default {
 		      return store.state.searchWord;
 	      },
 	      set(value) {
-		      store.dispatch('filterPlayers', value);
+		    store.dispatch('filterPlayers', value);
 	      }
       }
   },
@@ -49,6 +49,7 @@ export default {
   	  onChange(){
 	      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 	      const checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
+	      console.log(this.canGoToNextStep);
           this.canGoToNextStep = checkedOne;
       },
       goToSelectPosition(){
