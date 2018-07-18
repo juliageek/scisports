@@ -1,5 +1,5 @@
 # scisports
-##Assignment##
+## Assignment ##
 
 The app has one main component, App.vue, which serves as the external component where the other components are loaded.
 So this is where I inserted `<router-view>` and where the other components are loaded dynamically.
