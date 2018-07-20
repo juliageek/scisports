@@ -1,35 +1,25 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import data from '../json/players.json';
+import playersList from '../json/players.json';
+import positions from '../json/positions.json';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
 		players: [],
-		data: data,
+		playersList: playersList,
 		searchWord: '',
-		canNavigate: false
+		positions: positions
 	},
-	/*getters: {
-	 getPlayersWithCheckedState (state) {
-	 if (state.players.length > 0) {
-	 return state.players.forEach(player => {
-	 Vue.set(player, 'checked', false);
-	 })
-	 } else {
-	 return state.players;
-	 }
-	 }
-	 },*/
 	mutations: {
 		filteredPlayers (state, search) {
 			state.searchWord = search;
 			if(search){
-				state.data.forEach(player => {
+				state.playersList.forEach(player => {
 					Vue.set(player, 'checked', false);
 			});
-				state.players = state.data.filter(player => {
+				state.players = state.playersList.filter(player => {
 						if (player.name.includes(search)) {
 					return player;
 				}
