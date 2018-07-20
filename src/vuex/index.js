@@ -11,32 +11,38 @@ export default new Vuex.Store({
 		searchWord: '',
 		canNavigate: false
 	},
+	/*getters: {
+	 getPlayersWithCheckedState (state) {
+	 if (state.players.length > 0) {
+	 return state.players.forEach(player => {
+	 Vue.set(player, 'checked', false);
+	 })
+	 } else {
+	 return state.players;
+	 }
+	 }
+	 },*/
 	mutations: {
 		filteredPlayers (state, search) {
 			state.searchWord = search;
-			if(!search){
-				state.players=[];
-			}
-			else {
+			if(search){
+				state.data.forEach(player => {
+					Vue.set(player, 'checked', false);
+			});
 				state.players = state.data.filter(player => {
-					if (player.name.includes(search)) {
-						return player;
-					}
-				});
+						if (player.name.includes(search)) {
+					return player;
+				}
+			});
 			}
 		},
 		selectPlayer (state, payload) {
 			if(state.players) {
 				state.players.map(player => {
 					if (player.name === payload) {
-						const data = {
-							name: payload,
-							position: player.position,
-							checked: !player.checked
-						};
-						Object.assign({}, player, data)
-					}
-				})
+					Vue.set(player, 'checked', true);
+				}
+			})
 			}
 		}
 	},
