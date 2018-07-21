@@ -17,10 +17,10 @@ The other tricky part was modifying the data coming from json, as I really neede
 
 If I were to continue the project:
 
-1. I'd fix the breadcrumbs on top of the forms (probably move them in a separate component altogether).
-2. Set an empty state for SelectPlayer - what if the user doesn't find any name?
-3. Finish the SelectPosition component.
-4. Improve the Vuex store, as explained above, by removing the `checked: false` hardwritten property from each player object.
+1. I'd fix the breadcrumbs on top of the forms (probably move them in a separate component altogether). [Done]
+2. Set an empty state for SelectPlayer - what if the user doesn't find any name? 
+3. Finish the SelectPosition component. [Done]
+4. Improve the Vuex store, as explained above, by removing the `checked: false` hardwritten property from each player object. [Done]
 
 
 
