@@ -3,9 +3,11 @@
     <form class="player-search-form">
       <input type="text" placeholder="Search for a player" v-model="searchWord">
       <form v-for="player in players" v-if="players.length > 0" class="players-checkbox-list">
-        <input class="player-checkbox" type="checkbox" v-bind:key="player.name" :value="player.name" @change="selectPlayer">{{player.name}}<br>
+        <input class="player-checkbox" type="checkbox" v-bind:key="player.name" :value="player.name" @change="selectPlayer" :checked="player.checked">{{player.name}}<br>
       </form>
-      <button class="next-button" type="submit" :disabled="!canGoToNextStep" @click="goToSelectPosition">Next</button>
+      <button class="next-button" :disabled="!canNavigate" @click="goToSelectPosition">
+        <i class="fas fa-arrow-right"></i>Next
+      </button>
     </form>
   </div>
 </template>
@@ -15,24 +17,13 @@
 
 	export default {
 		name: 'SelectPlayer',
-		data() {
-			return {
-				selectedPlayers: [],
-				canGoToNextStep: false
-			}
-		},
 		computed: {
 			players() {
 				return store.state.players;
 			},
-          /*selectPlayer: {
-           get() {
-           return store.state.players;
-           },
-           set(value) {
-           store.dispatch('selectPlayer', value)
-           }
-           },*/
+			canNavigate() {
+				return store.getters.canNavigate;
+			},
 			searchWord: {
 				get() {
 					return store.state.searchWord;
@@ -44,10 +35,8 @@
 		},
 		methods: {
 			selectPlayer(event){
-				const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-				const checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
-				this.canGoToNextStep = checkedOne;
 				store.dispatch('selectPlayer', event.target.value);
+				store.dispatch('changeCanNavigate');
 			},
 			goToSelectPosition(){
 				this.$router.push('/select-position');
@@ -85,5 +74,8 @@
   .player-checkbox {
     padding: 3px;
     width: 30px;
+  }
+  input[type="checkbox"]:checked {
+    background-color: orangered;
   }
 </style>

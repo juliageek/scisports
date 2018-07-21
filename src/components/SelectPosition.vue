@@ -44,7 +44,7 @@
 <style lang="scss" rel="stylesheet/scss" scoped>
   @import '../../public/styles.scss';
   .position-text {
-    padding: 20px 0;
+    padding: 15px 0;
   }
   .player-position-form {
     @include form;
@@ -56,7 +56,6 @@
     width: 30px;
   }
   .positions-list-wrapper {
-    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;

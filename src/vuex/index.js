@@ -10,7 +10,16 @@ export default new Vuex.Store({
 		players: [],
 		playersList: playersList,
 		searchWord: '',
-		positions: positions
+		positions: positions,
+		canNavigate: false
+	},
+	getters: {
+		canNavigate (state) {
+			state.canNavigate = state.players.some(player => {
+					return player.checked === true;
+		});
+			return state.canNavigate;
+		}
 	},
 	mutations: {
 		filteredPlayers (state, search) {
@@ -30,10 +39,15 @@ export default new Vuex.Store({
 			if(state.players) {
 				state.players.map(player => {
 					if (player.name === payload) {
-					Vue.set(player, 'checked', true);
+					Vue.set(player, 'checked', !player.checked);
 				}
 			})
 			}
+		},
+		changeCanNavigate(state) {
+			state.canNavigate = state.players.some(player => {
+					return player.checked === true;
+		});
 		}
 	},
 	actions: {
@@ -42,6 +56,9 @@ export default new Vuex.Store({
 		},
 		selectPlayer(context, value) {
 			context.commit('selectPlayer', value);
+		},
+		changeCanNavigate(context) {
+			context.commit('changeCanNavigate', value);
 		}
 	}
 });
